@@ -4,7 +4,7 @@ description: Build or extend a SaaS from a product brief through a verified laun
 license: MIT
 metadata:
   author: cluepat
-  version: "1.2.2"
+  version: "1.2.3"
 ---
 
 # SaaS Builder

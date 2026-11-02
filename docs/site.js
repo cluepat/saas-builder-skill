@@ -1,4 +1,4 @@
-import { buildPrompt, resolveStackChoices } from "./prompt-builder.mjs?v=1.2.2";
+import { buildPrompt, resolveStackChoices } from "./prompt-builder.mjs?v=1.2.3";
 
 const status = document.querySelector(".copy-status");
 let clearStatus;
