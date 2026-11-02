@@ -1,3 +1,5 @@
+import { buildPrompt } from "./prompt-builder.mjs";
+
 const status = document.querySelector(".copy-status");
 let clearStatus;
 for (const button of document.querySelectorAll("[data-copy]")) {
@@ -6,9 +8,11 @@ for (const button of document.querySelectorAll("[data-copy]")) {
     try {
       await navigator.clipboard.writeText(source.textContent);
       status.textContent =
-        button.dataset.copy === "install-cursor"
-          ? "Repository URL copied"
-          : "Installation commands copied";
+        button.dataset.copy === "stack-prompt"
+          ? "Your stack prompt copied"
+          : button.dataset.copy === "install-cursor"
+            ? "Repository URL copied"
+            : "Installation commands copied";
     } catch {
       const range = document.createRange();
       range.selectNodeContents(source);
@@ -54,3 +58,15 @@ for (const [index, tab] of tabs.entries()) {
 }
 selectClient(tabs[0]);
 tablist.hidden = false;
+
+const stackForm = document.getElementById("stack-form");
+function updatePrompt() {
+  const fields = Object.fromEntries(new FormData(stackForm));
+  fields.existing = stackForm.elements.existing.checked;
+  document.getElementById("stack-prompt").textContent = buildPrompt(fields);
+}
+stackForm.addEventListener("input", updatePrompt);
+stackForm.addEventListener("change", updatePrompt);
+stackForm.addEventListener("submit", (event) => event.preventDefault());
+updatePrompt();
+document.querySelector(".prompt-builder").hidden = false;

@@ -1,4 +1,4 @@
 interface:
   display_name: "SaaS Builder"
   short_description: "Build and launch a SaaS from brief to production"
-  default_prompt: "Use $saas-builder to build my SaaS from a product brief through a verified production launch."
+  default_prompt: "Use $saas-builder to build my SaaS from a product brief through a verified production launch. Honor my preferred framework, backend, deployment host and payment provider; clarify consequential gaps before scaffolding."

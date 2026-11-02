@@ -4,7 +4,7 @@ description: Build or extend a SaaS from a product brief through a verified laun
 license: MIT
 metadata:
   author: cluepat
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # SaaS Builder
@@ -17,20 +17,28 @@ Read the repository instructions, current branch, local changes and existing dep
 
 Use the user's brief and connected sources to establish the primary user, core action, workspace/tenant model, public/demo experience, paid value, data sensitivity and launch destination. Ask only for consequential missing choices. Make reversible implementation choices autonomously within the user's scope. See [product and architecture](references/product-and-architecture.md) when defining scope or choosing the stack. The optional [project brief](assets/project-brief.md) records these decisions.
 
-An effective default for a browser SaaS is React + TypeScript, a static frontend on Cloudflare Workers, Supabase Auth/Postgres/private Storage/Edge Functions, transactional mail through Resend, optional Dodo billing, and Sentry. Adapt this to the requested product and existing stack. Use an AI provider only for an actual implemented AI capability. A structured export for an external coding agent is not built-in AI inference.
+## Let the user choose the stack
+
+Before scaffolding a new product, establish the frontend framework, rendering model, backend/database/auth, deployment host and payment provider (or no payments). Honor choices already in the brief; inspect and preserve an existing app's stack. For consequential gaps, ask one compact question with a free-text option, or offer a reasoned recommendation if the user delegated the choice. Do not require the user to choose every optional service before useful work can begin.
+
+React, Vue/Nuxt, Angular, SvelteKit and other frameworks are valid choices; Cloudflare, Vercel and other hosts are alternatives; Stripe, Dodo and other payment providers are alternatives. This is not a prebuilt connector matrix. Verify the selected framework's rendering/build output, host runtime, SDK support and provider availability before committing to an integration. Explain a concrete incompatibility and propose options; do not silently substitute the reference stack or migrate an existing app.
+
+Read [stack selection](references/stack-selection.md) when choosing or adapting services. Use the editable [stack prompt](assets/stack-prompt.md) to capture the user's preferences and unresolved choices. The optional [project brief](assets/project-brief.md) records the final decisions.
+
+The worked reference stack is React + TypeScript, Cloudflare Workers, Supabase Auth/Postgres/private Storage/Edge Functions, Resend, optional Dodo billing, and Sentry. Use it only when it fits the user's choices. Provider-specific examples, environment keys and helper checks apply to that stack; adapt them deliberately for another stack. Use an AI provider only for an implemented AI capability; an export for an external coding agent is not built-in AI inference.
 
 ## Implement one complete path first
 
-Connect the core flow across UI, API, authorization, database and storage before multiplying screens. Keep state ownership clear: shared UI components, domain components, focused hooks, API clients and pure utilities. Extract repetition when responsibilities are real; avoid speculative abstractions.
+Connect the core flow across UI, API, authorization, database and storage before multiplying screens. Keep state ownership clear: shared UI components, domain components, framework-appropriate state/services, API clients and pure utilities. Extract repetition when responsibilities are real; avoid speculative abstractions.
 
-Use shared design tokens for surfaces, type, spacing and primary actions. Semantic error, warning, success and information colors remain independent of the brand palette. Honor the chosen design direction; change only the requested aspects. Read [design and verification](references/design-and-verification.md) for presentation or React changes.
+Use shared design tokens for surfaces, type, spacing and primary actions. Semantic error, warning, success and information colors remain independent of the brand palette. Honor the chosen design direction; change only the requested aspects. Read [design and verification](references/design-and-verification.md) for presentation or component/state changes.
 
 ## Load the relevant implementation reference
 
 | Work needed                                                  | Reference                                                      |
 | ------------------------------------------------------------ | -------------------------------------------------------------- |
 | Auth, tenant isolation, redirects, uploads, CORS             | [Auth and data](references/auth-and-data.md)                   |
-| Cloudflare/Supabase deployment and PR staging                | [Deployment and staging](references/deployment-and-staging.md) |
+| Deployment, host/runtime compatibility and PR staging        | [Deployment and staging](references/deployment-and-staging.md) |
 | Subscriptions, entitlements, limits and test-to-live cutover | [Billing](references/billing.md)                               |
 | Resend, GitHub App or an external website widget             | [Optional integrations](references/integrations.md)            |
 | Monitoring, cleanup, retention and final launch evidence     | [Operations and launch](references/operations-and-launch.md)   |
@@ -43,7 +51,7 @@ Separate public browser identifiers from server credentials. Public Supabase pub
 
 Record the frontend URL, backend project, storage bucket, auth redirects, billing mode and deployed revision for each environment. Choose one hostname with routes when that serves the product; extra `app`, `cdn` and `api` subdomains are optional. A static frontend build cannot execute server API handlers, and frontend environment variables alone do not deploy a backend.
 
-For the reference stack, optionally run:
+The bundled environment checker supports the Cloudflare/Supabase/Dodo reference configuration only. It does not validate Stripe, Vercel, Firebase or arbitrary environment schemas. For the reference stack, optionally run:
 
 ```sh
 python3 scripts/check_environment.py --env-file /path/to/private.env --target staging --billing test --production-url https://example.com --production-project-ref PRODUCTION_PROJECT_REF

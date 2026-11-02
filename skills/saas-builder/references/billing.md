@@ -16,6 +16,14 @@ Serialize checkout creation per workspace. Reuse a compatible open session to av
 
 During migration from an implementation without mode metadata, classify existing bindings and open sessions before cutover. Do not infer that all records are disposable. A saved test session can survive a server environment change and be resumed by the app. Expiring only its local reservation does not revoke the provider's old URL. Inspect ambiguous sessions; get authorization for any existing-record reset and preserve unrelated data and the requested retention grace period.
 
+## Choose the provider deliberately
+
+Honor the requested provider, or omit paid checkout when no payments are needed. Compare recurring/usage billing, account eligibility, supported markets, tax responsibilities, portal behavior and runtime/SDK compatibility from current provider documentation before recommending one. Do not assume providers share a merchant-of-record model, signature algorithm, event names or product identifiers. Keep application plan/entitlement policy separate from the selected provider adapter; introduce multiple adapters only if the product actually needs multiple providers.
+
+### Stripe-specific path
+
+When Stripe is selected, map each billable interval to the intended Stripe Price and use the account's chosen sandbox/test or live configuration consistently. Create Checkout Sessions on the server with authenticated tenant ownership. Register a webhook destination for the lifecycle events the integration handles; verify the raw body with Stripe's signature verification and that endpoint's signing secret. Do not reuse Dodo's Standard Webhooks verifier. Reconcile billing state from verified Stripe events/API state before granting access, and configure the customer portal for the product's supported plan changes and cancellation policy. Keep retries idempotent and handle asynchronous payment outcomes. Follow current [Stripe Checkout](https://docs.stripe.com/payments/checkout/build-subscriptions), [subscription webhooks](https://docs.stripe.com/billing/subscriptions/webhooks) and [signature verification](https://docs.stripe.com/webhooks) documentation.
+
 ## Dodo reference setup
 
 Use current Dodo documentation or its connected tools for fields and dashboard paths. Treat the following as configuration requirements, not frozen API payloads:

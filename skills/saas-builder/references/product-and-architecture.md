@@ -8,6 +8,10 @@ Classify capabilities as implemented, planned or intentionally omitted. Keep pri
 
 For an existing repository, inspect current remote/main, branch dependencies and dirty files before editing. Use a separate branch when requested. Prefer a small reviewable change to a fresh rewrite. If a newer branch already contains the billing, setup and design commits, create one final PR; merging superseded branches adds confusion rather than features.
 
+## Stack decisions
+
+Use the [stack selection guide](stack-selection.md) before scaffolding. Record explicit choices separately from open recommendations. A frontend framework does not determine the backend, payment provider or hosting runtime. Keep an existing stack unless the requested change requires a reviewed migration.
+
 ## Reference deployment shape
 
 | Surface         | Example destination                 | Responsibility                                        |
@@ -23,7 +27,7 @@ This shape is a default, not a requirement. Separate domains when ownership, cac
 
 ## Boundaries that survive growth
 
-Keep browser auth clients browser-only. Put bearer-authenticated requests in a focused API client. Let a workspace hook own session changes and initial/manual loading; domain components receive data and callbacks. Keep report/detail selections and unsaved drafts above views that unmount during navigation.
+Keep browser auth clients browser-only. Put bearer-authenticated requests in a focused API client. Let a framework-appropriate state owner or service own session changes and initial/manual loading; domain components receive data and callbacks. Keep report/detail selections and unsaved drafts above views that unmount during navigation.
 
 Use one canonical server implementation. If moving Next.js handlers to Edge Functions for static hosting, migrate the contracts, validation, authentication and errors as well as the route code. Update every caller, including widget installers and playground iframes.
 

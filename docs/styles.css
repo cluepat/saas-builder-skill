@@ -460,6 +460,90 @@ dd {
   font-size: 0.75rem;
   line-height: 1.9;
 }
+input,
+select,
+textarea {
+  font: inherit;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+pre:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+.builder-note {
+  font-size: 0.8125rem;
+  line-height: 1.8;
+}
+.prompt-builder {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  margin-top: 28px;
+  align-items: start;
+}
+.prompt-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+}
+.prompt-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.prompt-fields .wide {
+  grid-column: 1 / -1;
+}
+.prompt-fields input:not([type="checkbox"]),
+.prompt-fields select,
+.prompt-fields textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 400;
+}
+.prompt-fields textarea {
+  resize: vertical;
+}
+.prompt-fields .existing-choice {
+  flex-direction: row;
+  align-items: center;
+  min-height: 44px;
+}
+.existing-choice input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--teal);
+}
+.prompt-output pre {
+  max-height: 600px;
+  overflow-y: auto;
+}
+.prompt-output .install-note {
+  color: #b6b6b6;
+}
+@media (max-width: 960px) {
+  .prompt-builder {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .prompt-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 .install-section {
   background: #202020;
   color: #fcfcfc;

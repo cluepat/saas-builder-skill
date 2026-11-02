@@ -8,11 +8,13 @@ Version schema and policies together. Add a new migration instead of rewriting a
 
 ## Auth redirects and email
 
+Use the selected auth provider's session, callback and email-template contracts. The following Supabase details apply only when Supabase Auth is selected; other providers need their own documented settings and recovery flows.
+
 For Supabase, distinguish the provider callback (`https://PROJECT_REF.supabase.co/auth/v1/callback`) from the app return URL (`https://example.com/app/`). Configure both in the appropriate provider and Supabase settings. Localhost returns belong only in development/test configuration. A signup request's `emailRedirectTo` and the project's Site URL can both cause a production email to point at localhost.
 
 Test signup confirmation, Google login if enabled, sign-out, password recovery and password update on the deployed origin. A successful OAuth credential screen does not prove the token exchange succeeded. For an exchange error, inspect provider logs and callback/client-secret configuration before rewriting the app's auth flow. Preserve unrelated redirect entries during configuration updates.
 
-Email confirmation and recovery templates should share branding and preserve Supabase's confirmation URL in the button and fallback link. Link expiry is different from a wrong redirect; correcting the return URL does not revive an expired token. Verify real delivery to an owned mailbox without exposing confirmation tokens.
+Email confirmation and recovery templates should share branding and preserve the selected auth provider's confirmation URL in the button and fallback link. Link expiry is different from a wrong redirect; correcting the return URL does not revive an expired token. Verify real delivery to an owned mailbox without exposing confirmation tokens.
 
 ## Private uploads
 

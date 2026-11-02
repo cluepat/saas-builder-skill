@@ -5,7 +5,14 @@
 - Core flow for the first vertical slice:
 - Tenant/owner/member model:
 - Public landing, demo and authenticated routes:
-- Selected stack and existing constraints:
+- Existing repository stack and constraints to preserve:
+- Frontend framework/language and CSR/SSR/prerender needs:
+- Backend/API runtime, database, auth and storage:
+- Deployment host, region/runtime constraints and preview strategy:
+- Payments provider (or none), billing model and account availability:
+- Email, monitoring and AI providers (only if needed):
+- Explicit user choices vs unresolved recommendations:
+- Compatibility checks and any agreed tradeoffs:
 - Plan names, prices, intervals, quotas and enforcement:
 - Retention, paid cancellation and downgrade grace:
 - Integrations actually needed:

@@ -19,6 +19,32 @@ Developed from building [Cluepat](https://cluepat.com). The package contains ori
 
 The suggested stack is configurable. This is an agent workflow, not a hosted service or a complete application template. Provider accounts and credentials belong to the person building the new product. Provider pricing, quotas and API syntax must be checked against current documentation.
 
+## Choose your stack
+
+The skill is stack-flexible. The worked examples use React/Cloudflare/Supabase/Dodo, but those choices are optional. Specify your frontend framework, backend/data/auth, deployment host and payments provider—or no payments. Other choices can be recommended when needed. Existing applications retain their unspecified stack choices.
+
+**[Build a prompt in the public guide](https://cluepat.github.io/saas-builder-skill/#prompt-builder)** or copy the [editable prompt template](skills/saas-builder/assets/stack-prompt.md). The browser prompt builder accepts custom values; the suggestions are not a fixed support matrix. It runs locally in your browser and does not send or store your entries.
+
+For example, in Codex:
+
+```text
+Use $saas-builder to build a customer feedback SaaS with Vue + TypeScript,
+Supabase for database/auth/private storage, Vercel deployment and Stripe billing.
+Recommend Vue/Vite or Nuxt based on the rendering needs. Verify runtime and SDK
+compatibility before scaffolding; explain any incompatibilities instead of
+silently substituting providers. Start with one complete flow and test payments.
+```
+
+An existing app can instead ask:
+
+```text
+Use $saas-builder to extend this Angular application with Stripe subscriptions.
+Preserve its current backend, auth and database. Deploy the frontend on Vercel
+if compatible, and explain any required migration before changing the stack.
+```
+
+Use the client-specific invocation below for Claude Code or Cursor. See [stack selection](skills/saas-builder/references/stack-selection.md) for the workflow. Framework-specific practices and provider contracts must be adapted and checked against current official documentation; this skill does not bundle prebuilt or preverified implementations of every possible combination.
+
 ## Install
 
 Choose one installation method per client to avoid duplicate skills. All three clients use the same `skills/saas-builder` source. No MCP servers, automatic hooks or provider credentials are bundled.
@@ -131,7 +157,7 @@ The skill loads detailed references only when needed. It does not authorize publ
 - [PR staging](skills/saas-builder/references/deployment-and-staging.md)
 - [Environment example](skills/saas-builder/assets/environment.example)
 
-Audit a private local environment file without sending or printing values:
+For the Supabase/Dodo reference stack only, audit a private local environment file without sending or printing values:
 
 ```sh
 python3 skills/saas-builder/scripts/check_environment.py \
@@ -140,7 +166,7 @@ python3 skills/saas-builder/scripts/check_environment.py \
   --production-project-ref YOUR_PRODUCTION_PROJECT_REF
 ```
 
-The checker supports simple, unique `KEY=VALUE` entries, single-line quoted values and `export` prefixes. Expand shell variables before using it. `--billing off` skips Dodo completeness checks; `test`/`live` verify presence and mode, not whether a key authenticates. A production app may intentionally use test payments during verification. Staging always rejects live billing. Passing the checker is not a deployment or security certification.
+This checker does not validate Stripe, Vercel, Firebase or arbitrary stack schemas. Use provider-native validation or add focused checks for the chosen configuration. It supports simple, unique `KEY=VALUE` entries, single-line quoted values and `export` prefixes. Expand shell variables before using it. `--billing off` skips Dodo completeness checks; `test`/`live` verify presence and mode, not whether a key authenticates. A production app may intentionally use test payments during verification. Staging always rejects live billing. Passing the checker is not a deployment or security certification.
 
 ## Contribute
 
@@ -153,6 +179,7 @@ pip install -r requirements-dev.txt
 python3 tools/validate_package.py
 python3 tools/build_download.py --check
 python3 -m unittest discover -s tests -v
+node --test tests/prompt-builder.test.mjs
 ```
 
 After editing skill resources, regenerate the standalone download with `python3 tools/build_download.py`.

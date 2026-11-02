@@ -12,7 +12,7 @@ For pricing, show plan value, actual charges, renewal interval, taxes, limits, r
 
 ## Component and state practices
 
-Extract shared components and utilities around actual responsibilities. Keep auth/session synchronization out of display components; keep unsaved drafts and selection above conditional views. Fetch independent requests concurrently where useful. Do not add speculative memoization or a global store to shorten prop lists. Use current Vercel React/composition guidance when relevant to the selected framework.
+Extract shared components and utilities around actual responsibilities. Keep auth/session synchronization out of display components; keep unsaved drafts and selection above conditional views. Fetch independent requests concurrently where useful. Do not add speculative memoization or a global store to shorten prop lists. Apply idioms from the selected framework: React hooks/composition, Vue components/composables, Angular components/services and its current reactivity model, or the equivalent in the chosen stack. Use React-specific skills only for React work; consult current framework guidance instead of translating hook rules mechanically.
 
 ## Behavioral verification
 

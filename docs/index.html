@@ -19,6 +19,7 @@
         <a class="wordmark" href="#">SaaS Builder<span>by Cluepat</span></a>
         <div class="nav-links">
           <a href="#workflow">Workflow</a><a href="#playbook">Playbook</a
+          ><a href="#prompt-builder">Build a prompt</a
           ><a href="#install">Install</a>
         </div>
         <a
@@ -110,12 +111,12 @@
         class="stack-strip wrap"
         aria-label="Configurable reference stack"
       >
-        <span>A useful starting stack.</span>
+        <span>One worked reference stack.</span>
         <div>
           <b>React</b><b>Cloudflare</b><b>Supabase</b><b>Dodo Payments</b
           ><b>Resend</b><b>Sentry</b>
         </div>
-        <small>Keep your own stack when it fits.</small>
+        <small>Your stack choices take priority.</small>
       </section>
       <section
         class="section wrap"
@@ -301,6 +302,151 @@
         </dl>
       </section>
       <section
+        class="section wrap"
+        id="prompt-builder"
+        aria-labelledby="prompt-title"
+      >
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">YOUR PRODUCT. YOUR STACK.</span>
+            <h2 id="prompt-title">Start with your choices.</h2>
+          </div>
+          <p>
+            Vue or Angular. Vercel or Cloudflare. Stripe or Dodo. Choose any
+            stack, or ask your agent to recommend one.
+          </p>
+        </div>
+        <p class="builder-note">
+          These are starting choices, not prebuilt connectors. Your agent checks
+          compatibility before implementation. Nothing entered here is sent or
+          saved.
+        </p>
+        <noscript
+          ><p>
+            Use the
+            <a
+              class="text-link"
+              href="https://github.com/cluepat/saas-builder-skill/blob/main/skills/saas-builder/assets/stack-prompt.md"
+              >editable stack prompt template</a
+            >, or enable JavaScript for the prompt builder.
+          </p></noscript
+        >
+        <div class="prompt-builder" hidden>
+          <form
+            id="stack-form"
+            class="prompt-fields"
+            aria-label="SaaS stack preferences"
+          >
+            <label class="wide"
+              >Your coding agent<select name="client">
+                <option value="codex">Codex</option>
+                <option value="claude-code">Claude Code plugin</option>
+                <option value="claude-standalone">
+                  Claude Code standalone skill
+                </option>
+                <option value="cursor">Cursor</option>
+              </select></label
+            >
+            <label class="wide"
+              >What are you building?<textarea
+                name="product"
+                rows="3"
+                maxlength="2000"
+                placeholder="A feedback portal for small product teams"
+              ></textarea>
+            </label>
+            <label
+              >Frontend framework<input
+                name="framework"
+                list="framework-options"
+                maxlength="200"
+                placeholder="Choose or type your own" /><datalist
+                id="framework-options"
+              >
+                <option value="React + TypeScript"></option>
+                <option value="Next.js"></option>
+                <option value="Vue + TypeScript"></option>
+                <option value="Nuxt"></option>
+                <option value="Angular"></option>
+                <option value="SvelteKit"></option>
+                <option value="Astro"></option></datalist
+            ></label>
+            <label
+              >Deployment host<input
+                name="hosting"
+                list="hosting-options"
+                maxlength="200"
+                placeholder="Choose or type your own" /><datalist
+                id="hosting-options"
+              >
+                <option value="Vercel"></option>
+                <option value="Cloudflare"></option>
+                <option value="Netlify"></option>
+                <option value="AWS"></option>
+                <option value="Render"></option></datalist
+            ></label>
+            <label
+              >Backend, data &amp; auth<input
+                name="backend"
+                list="backend-options"
+                maxlength="300"
+                placeholder="Your services or backend stack" /><datalist
+                id="backend-options"
+              >
+                <option value="Supabase"></option>
+                <option value="Firebase"></option>
+                <option value="Django + PostgreSQL"></option>
+                <option value="Laravel + PostgreSQL"></option>
+                <option value="Node.js + PostgreSQL"></option></datalist
+            ></label>
+            <label
+              >Payments<input
+                name="payments"
+                list="payments-options"
+                maxlength="200"
+                placeholder="Provider, none, or undecided" /><datalist
+                id="payments-options"
+              >
+                <option value="Stripe"></option>
+                <option value="Dodo Payments"></option>
+                <option value="Paddle"></option>
+                <option value="Lemon Squeezy"></option>
+                <option value="None"></option></datalist
+            ></label>
+            <label class="wide existing-choice"
+              ><input type="checkbox" name="existing" /> Extend an existing
+              application</label
+            >
+            <p class="wide builder-note">
+              Leave choices blank to ask for a recommendation. For an existing
+              app, blank choices preserve its current stack. Any framework or
+              provider name is welcome.
+            </p>
+          </form>
+          <div class="install-panel prompt-output">
+            <div class="command-heading">
+              <span>Your ready-to-use prompt</span
+              ><button
+                type="button"
+                data-copy="stack-prompt"
+                aria-label="Copy your stack prompt"
+              >
+                Copy prompt
+              </button>
+            </div>
+            <pre
+              id="stack-prompt"
+              tabindex="0"
+              aria-label="Generated SaaS prompt"
+            ></pre>
+            <p class="install-note">
+              Install the skill first, then paste this into your agent's chat.
+              Keep credentials out of the prompt.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section
         class="section install-section"
         id="install"
         aria-labelledby="install-title"
@@ -456,7 +602,7 @@ an isolated staging environment.</code></pre>
             class="button"
             href="https://github.com/cluepat/saas-builder-skill/issues"
             >Share an improvement <span aria-hidden="true">↗</span></a
-          ><span>v1.1.0 · No provider credentials included</span>
+          ><span>v1.2.0 · No provider credentials included</span>
         </div>
       </section>
     </main>
@@ -472,6 +618,6 @@ an isolated staging environment.</code></pre>
       </div>
     </footer>
     <div class="copy-status" role="status" aria-live="polite"></div>
-    <script src="site.js" defer></script>
+    <script src="site.js" type="module"></script>
   </body>
 </html>

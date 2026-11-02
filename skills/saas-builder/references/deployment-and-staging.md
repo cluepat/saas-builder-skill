@@ -1,8 +1,14 @@
 # Deployment and PR staging
 
+## Selected host and runtime
+
+Determine whether the app produces static assets, server-rendered routes or a long-running server. Match that output to the chosen host and its current framework integration. With Vercel, verify the framework preset, monorepo root, output, server runtime, environment scopes and preview behavior in the current [framework documentation](https://vercel.com/docs/frameworks). Use the corresponding provider guidance for other hosts. Do not add Wrangler or move APIs into Supabase solely because the reference stack does so.
+
+For a full-stack host, keep server routes there when compatible; for a static-only deployment, deploy server logic separately. In both cases, verify secrets stay server-side and callbacks/webhooks reach the actual deployed endpoint.
+
 ## Explicit targets
 
-Use a checked-in deployment configuration for each deployable app. For a monorepo, set the correct project root or use an explicit configuration path; do not depend on Wrangler guessing a workspace root. Build the frontend that the selected host actually serves. A Vite/static deployment and an optional Next.js server build are different outputs.
+Use a checked-in deployment configuration for each deployable app. For a monorepo, set the correct project root or use an explicit configuration path; do not depend on framework auto-detection guessing a workspace root. In the Cloudflare reference setup, use an explicit Wrangler configuration. Build the frontend that the selected host actually serves. A Vite/static deployment and an optional Next.js server build are different outputs.
 
 For a static app, deploy API handlers to the backend service and update the dashboard, widget and installer API destinations. Browser public variables configure clients; they do not create database tables, Auth providers or server functions. Keep provider secrets in the server's secret store, not frontend build variables.
 

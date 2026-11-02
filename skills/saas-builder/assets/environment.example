@@ -1,3 +1,5 @@
+# REFERENCE STACK ONLY: Vite/Cloudflare + Supabase + Dodo.
+# For other frameworks/providers, create the selected stack's own server/public schema.
 # Copy to a private environment file; never commit filled credentials.
 APP_ENV=development
 APP_URL=http://127.0.0.1:4173
