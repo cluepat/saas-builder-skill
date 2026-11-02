@@ -23,6 +23,20 @@ assert (ROOT / manifest["skills"]).resolve() == SKILL.parent.resolve()
 market = json.loads((ROOT / ".agents/plugins/marketplace.json").read_text())
 assert market["name"] == "cluepat" and market["plugins"][0]["name"] == manifest["name"]
 assert (ROOT / market["plugins"][0]["source"]["path"]).resolve() == ROOT
+for client in ("claude", "cursor"):
+    folder = ROOT / f".{client}-plugin"
+    native = json.loads((folder / "plugin.json").read_text())
+    for key in ("name", "version", "description", "author", "license", "repository"):
+        assert native[key] == manifest[key], f"{client} plugin {key} is out of sync"
+    assert "interface" not in native, "Codex UI metadata belongs only in its manifest"
+    catalog = json.loads((folder / "marketplace.json").read_text())
+    assert catalog["name"] == "cluepat" and catalog["owner"]["name"] == "Cluepat"
+    assert len(catalog["plugins"]) == 1
+    entry = catalog["plugins"][0]
+    assert entry["name"] == native["name"]
+    assert (ROOT / entry["source"]).resolve() == ROOT
+    # Native clients discover skills/ by convention, using the same source.
+    assert list((ROOT / "skills").glob("*/SKILL.md")) == [SKILL / "SKILL.md"]
 assert (ROOT / "LICENSE").read_text() == (SKILL / "LICENSE").read_text()
 for path in [ROOT / "README.md", *SKILL.rglob("*.md")]:
     for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", path.read_text()):

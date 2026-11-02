@@ -37,7 +37,8 @@
           </h1>
           <p class="lede">
             A reusable skill that takes your coding agent from a product brief
-            to auth, billing, staging, and a launch you can verify.
+            to auth, billing, staging, and a launch you can verify. For Codex,
+            Claude Code, and Cursor.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#install"
@@ -309,9 +310,9 @@
             <span class="eyebrow">MAKE IT YOURS</span>
             <h2 id="install-title">Install once.<br />Build your next SaaS.</h2>
             <p>
-              Install the Codex plugin, start a new chat, and describe the
-              product. The underlying skill folder also follows the Agent Skills
-              format.
+              Choose your coding agent, install the skill, and describe your
+              product. The same workflow, references, and templates work across
+              Codex, Claude Code, and Cursor.
             </p>
             <a
               class="text-link"
@@ -320,24 +321,119 @@
             >
           </div>
           <div class="install-panel">
-            <div class="command-heading">
-              <span>Codex CLI</span
-              ><button
+            <div
+              class="client-tabs"
+              role="tablist"
+              aria-label="Choose your coding agent"
+              hidden
+            >
+              <button
+                id="tab-codex"
                 type="button"
-                data-copy="install-command"
-                aria-label="Copy installation commands"
+                role="tab"
+                aria-controls="panel-codex"
+                aria-selected="true"
               >
-                Copy
+                Codex
+              </button>
+              <button
+                id="tab-claude"
+                type="button"
+                role="tab"
+                aria-controls="panel-claude"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Claude Code
+              </button>
+              <button
+                id="tab-cursor"
+                type="button"
+                role="tab"
+                aria-controls="panel-cursor"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Cursor
               </button>
             </div>
-            <pre
-              id="install-command"
-            ><code>codex plugin marketplace add cluepat/saas-builder-skill
+            <section
+              id="panel-codex"
+              class="client-panel"
+              aria-labelledby="tab-codex"
+            >
+              <div class="command-heading">
+                <span>Codex · Run in your terminal</span
+                ><button
+                  type="button"
+                  data-copy="install-codex"
+                  aria-label="Copy Codex installation commands"
+                >
+                  Copy
+                </button>
+              </div>
+              <pre
+                id="install-codex"
+              ><code>codex plugin marketplace add cluepat/saas-builder-skill
 codex plugin add saas-builder@cluepat</code></pre>
-            <div class="prompt-heading">Then, in a new chat</div>
-            <pre class="prompt"><code>Use $saas-builder to build my SaaS.
+              <div class="prompt-heading">Then, in a new chat</div>
+              <pre class="prompt"><code>Use $saas-builder to build my SaaS.
 Start with the core user flow and prepare
 an isolated staging environment.</code></pre>
+            </section>
+            <section
+              id="panel-claude"
+              class="client-panel"
+              aria-labelledby="tab-claude"
+            >
+              <div class="command-heading">
+                <span>Claude Code · Run inside Claude Code</span
+                ><button
+                  type="button"
+                  data-copy="install-claude"
+                  aria-label="Copy Claude Code installation commands"
+                >
+                  Copy
+                </button>
+              </div>
+              <pre
+                id="install-claude"
+              ><code>/plugin marketplace add cluepat/saas-builder-skill
+/plugin install saas-builder@cluepat</code></pre>
+              <div class="prompt-heading">Then, in a new session</div>
+              <pre
+                class="prompt"
+              ><code>/saas-builder:saas-builder Build my SaaS.
+Start with the core user flow and prepare
+an isolated staging environment.</code></pre>
+            </section>
+            <section
+              id="panel-cursor"
+              class="client-panel"
+              aria-labelledby="tab-cursor"
+            >
+              <div class="command-heading">
+                <span>Cursor · Import from GitHub</span
+                ><button
+                  type="button"
+                  data-copy="install-cursor"
+                  aria-label="Copy Cursor repository URL"
+                >
+                  Copy URL
+                </button>
+              </div>
+              <pre
+                id="install-cursor"
+              ><code>https://github.com/cluepat/saas-builder-skill</code></pre>
+              <p class="client-instructions">
+                Open Customize → Plugins → From GitHub Repository. Import this
+                URL, then install SaaS Builder from the Cluepat marketplace.
+              </p>
+              <div class="prompt-heading">Then, in a new Agent chat</div>
+              <pre class="prompt"><code>/saas-builder Build my SaaS.
+Start with the core user flow and prepare
+an isolated staging environment.</code></pre>
+            </section>
             <p class="install-note">
               Your product. Your provider accounts. Your deployment.
             </p>
@@ -360,7 +456,7 @@ an isolated staging environment.</code></pre>
             class="button"
             href="https://github.com/cluepat/saas-builder-skill/issues"
             >Share an improvement <span aria-hidden="true">↗</span></a
-          ><span>v1.0.0 · No provider credentials included</span>
+          ><span>v1.1.0 · No provider credentials included</span>
         </div>
       </section>
     </main>

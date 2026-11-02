@@ -1,0 +1,14 @@
+{
+  "name": "cluepat",
+  "owner": {
+    "name": "Cluepat"
+  },
+  "plugins": [
+    {
+      "name": "saas-builder",
+      "source": "./",
+      "description": "Build and launch a SaaS from a brief through verified production connections."
+    }
+  ],
+  "description": "Reusable SaaS implementation and launch skills by Cluepat."
+}

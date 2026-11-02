@@ -5,7 +5,10 @@ for (const button of document.querySelectorAll("[data-copy]")) {
     const source = document.getElementById(button.dataset.copy);
     try {
       await navigator.clipboard.writeText(source.textContent);
-      status.textContent = "Installation commands copied";
+      status.textContent =
+        button.dataset.copy === "install-cursor"
+          ? "Repository URL copied"
+          : "Installation commands copied";
     } catch {
       const range = document.createRange();
       range.selectNodeContents(source);
@@ -20,3 +23,34 @@ for (const button of document.querySelectorAll("[data-copy]")) {
     }, 4000);
   });
 }
+
+const tablist = document.querySelector(".client-tabs");
+const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+function selectClient(selected) {
+  for (const tab of tabs) {
+    const active = tab === selected;
+    tab.setAttribute("aria-selected", String(active));
+    tab.tabIndex = active ? 0 : -1;
+    const panel = document.getElementById(tab.getAttribute("aria-controls"));
+    panel.setAttribute("role", "tabpanel");
+    panel.hidden = !active;
+  }
+}
+for (const [index, tab] of tabs.entries()) {
+  tab.addEventListener("click", () => selectClient(tab));
+  tab.addEventListener("keydown", (event) => {
+    const targets = {
+      ArrowRight: (index + 1) % tabs.length,
+      ArrowLeft: (index + tabs.length - 1) % tabs.length,
+      Home: 0,
+      End: tabs.length - 1,
+    };
+    if (!(event.key in targets)) return;
+    event.preventDefault();
+    const next = tabs[targets[event.key]];
+    selectClient(next);
+    next.focus();
+  });
+}
+selectClient(tabs[0]);
+tablist.hidden = false;
