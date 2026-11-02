@@ -1,0 +1,15 @@
+# Copy to a private environment file; never commit filled credentials.
+APP_ENV=development
+APP_URL=http://127.0.0.1:4173
+VITE_SUPABASE_URL=
+VITE_SUPABASE_PUBLISHABLE_KEY=
+VITE_API_BASE_URL=
+# Server settings: configure in the backend secret store.
+SUPABASE_SERVICE_ROLE_KEY=
+DODO_PAYMENTS_ENVIRONMENT=test_mode
+DODO_PAYMENTS_API_KEY=
+DODO_PAYMENTS_WEBHOOK_KEY=
+DODO_PRO_MONTHLY_PRODUCT_ID=
+DODO_PRO_ANNUAL_PRODUCT_ID=
+RESEND_API_KEY=
+SENTRY_DSN=

@@ -1,0 +1,16 @@
+{
+  "name": "saas-builder",
+  "version": "1.0.0",
+  "description": "Build and launch a SaaS from a brief through verified production connections.",
+  "author": {
+    "name": "Cluepat"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/cluepat/saas-builder-skill",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "SaaS Builder",
+    "shortDescription": "Build a SaaS from brief to production",
+    "category": "Developer Tools"
+  }
+}
