@@ -1,6 +1,6 @@
 {
   "name": "saas-builder",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Build and launch a SaaS from a brief through verified production connections.",
   "author": {
     "name": "Cluepat"

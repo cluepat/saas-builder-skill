@@ -1,4 +1,4 @@
-import { buildPrompt } from "./prompt-builder.mjs";
+import { buildPrompt } from "./prompt-builder.mjs?v=1.2.1";
 
 const status = document.querySelector(".copy-status");
 let clearStatus;

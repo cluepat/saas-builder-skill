@@ -19,6 +19,12 @@ assert "$saas-builder" in ui["interface"]["default_prompt"]
 manifest = json.loads((ROOT / "plugin.json").read_text())
 assert manifest == json.loads((ROOT / ".codex-plugin/plugin.json").read_text())
 assert manifest["version"] == metadata["metadata"]["version"]
+version = manifest["version"]
+page = (ROOT / "docs/index.html").read_text()
+assert f'styles.css?v={version}' in page, "Version the stylesheet to avoid stale assets"
+assert f'site.js?v={version}' in page, "Version the script to avoid stale assets"
+assert f'prompt-builder.mjs?v={version}' in (ROOT / "docs/site.js").read_text()
+assert f'v{version} ·' in page, "Public guide release is out of sync"
 assert (ROOT / manifest["skills"]).resolve() == SKILL.parent.resolve()
 market = json.loads((ROOT / ".agents/plugins/marketplace.json").read_text())
 assert market["name"] == "cluepat" and market["plugins"][0]["name"] == manifest["name"]
