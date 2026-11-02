@@ -499,6 +499,34 @@ pre:focus-visible {
 .prompt-fields .wide {
   grid-column: 1 / -1;
 }
+.stack-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.select-control {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+.select-control::after {
+  content: "";
+  position: absolute;
+  right: 17px;
+  top: calc(50% - 5px);
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--secondary);
+  border-bottom: 2px solid var(--secondary);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.prompt-fields .select-control select {
+  appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+}
 .prompt-fields input:not([type="checkbox"]),
 .prompt-fields select,
 .prompt-fields textarea {

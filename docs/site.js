@@ -1,4 +1,4 @@
-import { buildPrompt } from "./prompt-builder.mjs?v=1.2.1";
+import { buildPrompt, resolveStackChoices } from "./prompt-builder.mjs?v=1.2.2";
 
 const status = document.querySelector(".copy-status");
 let clearStatus;
@@ -61,7 +61,15 @@ tablist.hidden = false;
 
 const stackForm = document.getElementById("stack-form");
 function updatePrompt() {
-  const fields = Object.fromEntries(new FormData(stackForm));
+  for (const custom of stackForm.querySelectorAll("[data-custom-for]")) {
+    const selected =
+      stackForm.elements[custom.dataset.customFor].value === "__custom";
+    custom.hidden = !selected;
+    custom.querySelector("input").disabled = !selected;
+  }
+  const fields = resolveStackChoices(
+    Object.fromEntries(new FormData(stackForm)),
+  );
   fields.existing = stackForm.elements.existing.checked;
   document.getElementById("stack-prompt").textContent = buildPrompt(fields);
 }

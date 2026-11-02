@@ -5,6 +5,18 @@ const invocation = {
   cursor: "/saas-builder",
 };
 
+export function resolveStackChoices(fields) {
+  const result = { ...fields };
+  for (const key of ["framework", "hosting", "backend", "payments"]) {
+    result[key] =
+      fields[key] === "__custom"
+        ? fields[`${key}-custom`] || ""
+        : fields[key] || "";
+    delete result[`${key}-custom`];
+  }
+  return result;
+}
+
 export function buildPrompt(options = {}) {
   const client = options.client || "codex";
   if (!Object.hasOwn(invocation, client))

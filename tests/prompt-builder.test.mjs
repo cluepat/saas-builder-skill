@@ -1,6 +1,42 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildPrompt } from "../docs/prompt-builder.mjs";
+import { buildPrompt, resolveStackChoices } from "../docs/prompt-builder.mjs";
+
+test("custom selections use typed values without leaking picker markers", () => {
+  const fields = resolveStackChoices({
+    framework: "__custom",
+    "framework-custom": "SolidJS",
+    hosting: "__custom",
+    "hosting-custom": "My own server",
+    backend: "Firebase",
+    payments: "__custom",
+    "payments-custom": "Regional provider",
+  });
+  const prompt = buildPrompt(fields);
+  for (const value of [
+    "SolidJS",
+    "My own server",
+    "Firebase",
+    "Regional provider",
+  ])
+    assert.ok(prompt.includes(value));
+  assert.doesNotMatch(prompt, /__custom/);
+});
+
+test("switching away from custom ignores previously typed values", () => {
+  const fields = resolveStackChoices({
+    framework: "Vue + TypeScript",
+    "framework-custom": "Old choice",
+    payments: "None",
+    "payments-custom": "Old provider",
+    hosting: "__custom",
+  });
+  const prompt = buildPrompt(fields);
+  assert.match(prompt, /Vue \+ TypeScript/);
+  assert.match(prompt, /Omit checkout/);
+  assert.match(prompt, /Deployment host: Not selected/);
+  assert.doesNotMatch(prompt, /Old choice|Old provider|__custom/);
+});
 
 test("unspecified choices do not silently select the reference stack", () => {
   const prompt = buildPrompt();
