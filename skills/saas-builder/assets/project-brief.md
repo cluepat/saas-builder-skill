@@ -3,7 +3,7 @@
 - Product and target user:
 - Primary user action and success outcome:
 - Core flow for the first vertical slice:
-- Tenant/owner/member model:
+- Tenant/owner/member model, operation matrix and contribution attribution:
 - Public landing, demo and authenticated routes:
 - Existing repository stack and constraints to preserve:
 - Frontend framework/language and CSR/SSR/prerender needs:
@@ -15,6 +15,8 @@
 - Compatibility checks and any agreed tradeoffs:
 - Plan names, prices, intervals, quotas and enforcement:
 - Retention, paid cancellation and downgrade grace:
+- Included seats, invitation reservations and membership lifecycle (if needed):
+- Project-context entry point and feature-guide/roadmap links:
 - Integrations actually needed:
 - AI capability implemented (if any):
 - Initial/manual/realtime refresh behavior:

@@ -6,7 +6,7 @@ Implement only integrations needed by the product. Check the current official do
 
 An inbox on Google Workspace and a transactional email provider solve different problems. Keep the existing mailbox MX records while adding the provider's required DNS verification records. Use a verified sending domain/subdomain and monitor delivery/bounces. Configure the auth service's SMTP settings when it sends auth emails; placing a Resend key on the frontend host does not connect Supabase Auth to SMTP.
 
-Keep confirmation and recovery templates visually consistent, with the correct flow-specific link and a fallback URL. Never publish an actual verification link in documentation or screenshots. Confirm the deployed auth return URL, sender and delivery in an owned inbox. Test fixtures that mock SMTP do not prove email delivery.
+Use a consistent email shell for confirmation, recovery, invitations and enabled security notifications, with flow-specific content and links. Distinguish source HTML from hosted auth templates: editing a file does not necessarily update the provider. Document where each template is applied and retain the auth callback contract. Version/freeze payloads used by existing idempotent delivery retries before changing their presentation. Never publish an actual verification link in documentation or screenshots. Confirm the deployed auth return URL, sender and delivery in an owned inbox. Test fixtures that mock SMTP do not prove email delivery.
 
 ## GitHub App issue creation
 

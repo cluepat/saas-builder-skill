@@ -4,7 +4,7 @@ description: Build or extend a SaaS from a product brief through a verified laun
 license: MIT
 metadata:
   author: cluepat
-  version: "1.2.3"
+  version: "1.3.0"
 ---
 
 # SaaS Builder
@@ -13,9 +13,11 @@ Turn the user's product into a working service, then connect and verify the depl
 
 ## Begin with the actual product
 
-Read the repository instructions, current branch, local changes and existing deployment configuration. Preserve work already present. For an existing app, identify the missing slice and continue there; do not restart its design or replace working integrations.
+Read the repository instructions, maintained project context, current branch, local changes and existing deployment configuration. Preserve work already present. For an existing app, identify the missing slice and continue there; do not restart its design or replace working integrations.
 
 Use the user's brief and connected sources to establish the primary user, core action, workspace/tenant model, public/demo experience, paid value, data sensitivity and launch destination. Ask only for consequential missing choices. Make reversible implementation choices autonomously within the user's scope. See [product and architecture](references/product-and-architecture.md) when defining scope or choosing the stack. The optional [project brief](assets/project-brief.md) records these decisions.
+
+For work spanning multiple tasks/chats, read [project continuity](references/project-continuity.md). Keep product state and accepted design decisions in the repository; update superseded guidance rather than making this generic skill a project history. The optional [context template](assets/project-context.md) provides a small starting structure.
 
 ## Let the user choose the stack
 
@@ -31,17 +33,20 @@ The worked reference stack is React + TypeScript, Cloudflare Workers, Supabase A
 
 Connect the core flow across UI, API, authorization, database and storage before multiplying screens. Keep state ownership clear: shared UI components, domain components, framework-appropriate state/services, API clients and pure utilities. Extract repetition when responsibilities are real; avoid speculative abstractions.
 
+Keep subscription entitlements, project-enabled features, presentation choices and backend protocol capabilities distinct. Resolve effective access centrally and enforce it server-side; presentation alone cannot grant a feature. Preserve stored preferences through downgrade when safe, serving an allowed effective configuration.
+
 Use shared design tokens for surfaces, type, spacing and primary actions. Semantic error, warning, success and information colors remain independent of the brand palette. Honor the chosen design direction; change only the requested aspects. Read [design and verification](references/design-and-verification.md) for presentation or component/state changes.
 
 ## Load the relevant implementation reference
 
-| Work needed                                                  | Reference                                                      |
-| ------------------------------------------------------------ | -------------------------------------------------------------- |
-| Auth, tenant isolation, redirects, uploads, CORS             | [Auth and data](references/auth-and-data.md)                   |
-| Deployment, host/runtime compatibility and PR staging        | [Deployment and staging](references/deployment-and-staging.md) |
-| Subscriptions, entitlements, limits and test-to-live cutover | [Billing](references/billing.md)                               |
-| Resend, GitHub App or an external website widget             | [Optional integrations](references/integrations.md)            |
-| Monitoring, cleanup, retention and final launch evidence     | [Operations and launch](references/operations-and-launch.md)   |
+| Work needed                                                  | Reference                                                        |
+| ------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Auth, tenant isolation, redirects, uploads, CORS             | [Auth and data](references/auth-and-data.md)                     |
+| Workspace roles, invitations, shared usage and seats         | [Workspace collaboration](references/workspace-collaboration.md) |
+| Deployment, host/runtime compatibility and PR staging        | [Deployment and staging](references/deployment-and-staging.md)   |
+| Subscriptions, entitlements, limits and test-to-live cutover | [Billing](references/billing.md)                                 |
+| Resend, GitHub App or an external website widget             | [Optional integrations](references/integrations.md)              |
+| Monitoring, cleanup, retention and final launch evidence     | [Operations and launch](references/operations-and-launch.md)     |
 
 Read only the sections relevant to the current work. Provider SDKs, dashboard labels, pricing, quotas and deployment syntax change: consult current primary documentation or the connected provider tools before relying on them. Prefer a suitable installed provider skill when available; this package does not require another skill to function.
 

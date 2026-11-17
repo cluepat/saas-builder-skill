@@ -6,6 +6,8 @@ Model workspaces/organizations and ownership or membership explicitly. Derive th
 
 Version schema and policies together. Add a new migration instead of rewriting a migration already applied elsewhere. Validate cross-tenant rejection, not only the owner's happy path. Do not reset a production database to resolve migration drift.
 
+For teammate invitations, shared quotas and role lifecycle rules, read [workspace collaboration](workspace-collaboration.md).
+
 ## Auth redirects and email
 
 Use the selected auth provider's session, callback and email-template contracts. The following Supabase details apply only when Supabase Auth is selected; other providers need their own documented settings and recovery flows.
@@ -14,7 +16,7 @@ For Supabase, distinguish the provider callback (`https://PROJECT_REF.supabase.c
 
 Test signup confirmation, Google login if enabled, sign-out, password recovery and password update on the deployed origin. A successful OAuth credential screen does not prove the token exchange succeeded. For an exchange error, inspect provider logs and callback/client-secret configuration before rewriting the app's auth flow. Preserve unrelated redirect entries during configuration updates.
 
-Email confirmation and recovery templates should share branding and preserve the selected auth provider's confirmation URL in the button and fallback link. Link expiry is different from a wrong redirect; correcting the return URL does not revive an expired token. Verify real delivery to an owned mailbox without exposing confirmation tokens.
+Confirmation, recovery, invitations and security notifications should share a maintained email design. Preserve the selected provider's flow-specific link/OTP contract in buttons and fallbacks; a security notification is not a password-reset token. If the app uses its own verified-token callback, preserve that reviewed contract instead of replacing it with a generic URL. Link expiry is different from a wrong redirect; correcting the return URL does not revive an expired token. Verify real delivery to an owned mailbox without exposing confirmation tokens.
 
 ## Private uploads
 

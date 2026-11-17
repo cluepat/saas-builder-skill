@@ -4,6 +4,8 @@
 
 Respect an approved layout and copy when only color or icons are requested. Centralize surfaces, text, borders, radii and action colors in tokens; landing, pricing, auth, dashboard and standalone widgets should not drift into unrelated themes. A widget shadow root needs its own token bridge.
 
+Resolve current repository tokens, components and accepted screenshots before applying a reusable design reference. Remove obsolete palette guidance from project docs when it conflicts with accepted changes; a generic skill must not reset an existing product to its reference aesthetic. Reuse one paid-feature badge across plan summaries and feature settings, showing paid access at the correct capability boundary.
+
 Use brand colors for identity and primary actions. Use semantic red, amber, green and blue for error/destructive, attention, success/connected and information/progress states. Small violet/teal/orange feature accents are optional. Keep meaning in labels and shapes as well as color. Preserve recognizable provider marks.
 
 Prefer system typography, restrained hierarchy, comfortable targets and short state-driven motion. Respect reduced motion, reduced transparency and increased contrast. Compare competitor flows for useful interaction patterns without copying their product identity or implying endorsement. Apply a dedicated design skill if requested and available.
@@ -22,6 +24,6 @@ Exercise 320px layouts and 200% text. A screenshot fitting the viewport does not
 
 For dialogs and tabs, verify focus trapping/restoration, nested Escape, arrow/Home/End navigation, touch targets and browser history. Wait for an entrance transform to settle before operating controls inside an iframe when frame-local actionability cannot observe the parent's motion. Avoid arbitrary sleeps.
 
-When CI fails, fetch the exact PR revision and failed test output/artifacts. Reproduce the runner's worker count, environment and fonts as closely as practical. A local pass is not evidence that the linked CI failure is fixed. Push to the same PR and distinguish local validation from a verified green remote run.
+When CI fails, fetch the exact PR revision and failed test output/artifacts. Reproduce the runner's worker count, environment and fonts as closely as practical. A local pass is not evidence that the linked CI failure is fixed. When a push is authorized, target the intended PR revision; otherwise leave the reviewable fix with the owner. Distinguish local validation from a verified green remote run.
 
 Sources: [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices), [Composition Patterns](https://github.com/vercel-labs/agent-skills/tree/main/skills/composition-patterns), [Apple accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility), [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/).

@@ -8,7 +8,9 @@ Developed from building [Cluepat](https://cluepat.com). The package contains ori
 
 ## What it covers
 
-- Product scope, a complete first user flow and maintainable React boundaries.
+- Product scope, a complete first user flow and framework-appropriate component/state boundaries.
+- Maintained project context, focused new-chat handoffs and a roadmap that separates shipped features from ideas.
+- Workspace roles, verified invitations, pooled usage, seat enforcement and downgrade/upgrade access.
 - Public landing/demo, authenticated app and shared accessible design tokens.
 - Supabase Auth, correct email/OAuth redirects, tenant RLS and private uploads.
 - Cloudflare static hosting, explicit monorepo configuration and actual backend deployment.
@@ -18,6 +20,12 @@ Developed from building [Cluepat](https://cluepat.com). The package contains ori
 - Sentry, usage visibility, scheduled cleanup, retention and launch evidence.
 
 The suggested stack is configurable. This is an agent workflow, not a hosted service or a complete application template. Provider accounts and credentials belong to the person building the new product. Provider pricing, quotas and API syntax must be checked against current documentation.
+
+## Existing-product context and collaboration
+
+For a product evolving across chats, use [project continuity](skills/saas-builder/references/project-continuity.md) and the optional [context template](skills/saas-builder/assets/project-context.md). Keep the product's current design, plans and feature inventory in its own repository; the generic skill does not prescribe Cluepat's palette, prices or quotas.
+
+When teams are needed, [workspace collaboration](skills/saas-builder/references/workspace-collaboration.md) covers member/owner operations, verified invitations, atomic seat reservations, shared allowances and access changes. These are configurable product decisions, not automatic features for every new SaaS. Codex, Claude Code and Cursor consume the same source and references.
 
 ## Choose your stack
 

@@ -8,6 +8,8 @@ Enforce paid features, resource creation and usage limits on the server. Update 
 
 Derive billing workspace/customer IDs from authenticated ownership. Keep payment API and webhook signing secrets server-side. A checkout redirect must never activate a paid plan. Signed webhooks and verified canonical provider state determine entitlement. Handle duplicate, delayed, out-of-order and superseded-subscription events. Define active, renewal, scheduled cancellation, failed, past-due, on-hold, paused and expired behavior deliberately.
 
+Workspace plans may grant pooled usage to invited members without granting billing access. See [workspace collaboration](workspace-collaboration.md) for operation matrices, capacity enforcement and non-renewing grace deadlines. Keep project toggles and protocol-support flags separate from paid entitlement; downgrades should serve a permitted effective configuration without erasing safe stored preferences.
+
 ## Checkout reservations
 
 Serialize checkout creation per workspace. Reuse a compatible open session to avoid duplicate subscriptions. On an ambiguous provider timeout, retain the reservation, inspect provider state and reconcile before creating another session. Distinguish expired/cancelled checkout from “request returned an error.”
